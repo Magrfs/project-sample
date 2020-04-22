@@ -146,3 +146,5 @@ CORS_ALLOW_HEADERS = (
     'x-csrftoken',
     'x-requested-with',
 )
+
+ALGORITHM = my_settings.ALGORITHM
