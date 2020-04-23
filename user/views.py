@@ -31,6 +31,7 @@ class UserView(View):
 
             if data['birth_date'] is None or len(data['birth_date']) == 0:
                 return JsonResponse({"message": "INPUT_DATE"}, status=401)
+
             if not re.match(r'(\d{4})-(\d{2})-(\d{2})', data['birth_date']):
                 return JsonResponse({"message": "INVALID_TIME"}, status=401)
 
@@ -52,9 +53,10 @@ class UserView(View):
                 birth_date = data['birth_date'],
                 phone = data['phone'],
                 email = data['email'],
-                address = data['address'],
-                address_detail = data['address_detail'],
-            )
+                zipcode = data.get('zipcode', None),
+                address = data.get('address', None),
+                address_detail = data.get('address', None),
+                )
             return HttpResponse(status=200)
 
         except KeyError:
