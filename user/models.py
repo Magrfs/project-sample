@@ -3,7 +3,7 @@ from django.db import models
 
 class User(models.Model):
     user_id = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=100)
     name = models.CharField(max_length=50)
     birth_date = models.DateTimeField()
     phone = models.CharField(max_length=20)
