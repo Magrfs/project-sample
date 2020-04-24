@@ -11,13 +11,14 @@ class User(models.Model):
     zipcode = models.CharField(max_length=20, null=True)
     address = models.CharField(max_length=100, null=True)
     address_detail = models.CharField(max_length=50, null=True)
+    user_info = models.OneToOneField('UserInfo', on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = 'users'
 
 class ClausesConfirmation(models.Model):
-    user_id = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
-    clausers_id = models.ForeignKey('ClausesOption', on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
+    clausers = models.ForeignKey('ClausesOption', on_delete=models.SET_NULL, null=True)
     confirm = models.BooleanField()
 
     class Meta:
@@ -40,8 +41,8 @@ class ClausesEssentials(models.Model):
         db_table = 'clauses_essentials'
 
 class UserInfo(models.Model):
-    user = models.OneToOneField('User', on_delete=models.CASCADE)
-    rank_id = models.ForeignKey('Rank', on_delete=models.SET_NULL, null=True)
+    user_relation = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
+    rank = models.ForeignKey('Rank', on_delete=models.SET_NULL, null=True)
     savings_point = models.IntegerField()
 
     class Meta:
@@ -55,14 +56,14 @@ class Rank(models.Model):
         db_table = 'ranks'
 
 class Card(models.Model):
-    user_id = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
     code = models.CharField(max_length=45)
 
     class Meta:
         db_table = 'cards'
 
 class Crown(models.Model):
-    user_info_id = models.ForeignKey('UserInfo', on_delete=models.SET_NULL, null=True)
+    user_info = models.ForeignKey('UserInfo', on_delete=models.SET_NULL, null=True)
     saving_date = models.DateTimeField()
     saving_target = models.CharField(max_length=50)
     saving_crown = models.IntegerField()
@@ -72,8 +73,8 @@ class Crown(models.Model):
         db_table = 'user_crowns'
 
 class Coupon(models.Model):
-    user_info_id = models.ForeignKey('UserInfo', on_delete=models.SET_NULL, null=True)
-    code = models.IntegerField()
+    user_info = models.ForeignKey('UserInfo', on_delete=models.SET_NULL, null=True)
+    code = models.CharField(max_length=300)
     name = models.CharField(max_length=50)
     expire_date = models.DateTimeField()
     is_available = models.BooleanField()
