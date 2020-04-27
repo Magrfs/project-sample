@@ -5,7 +5,7 @@ class User(models.Model):
     user_id = models.CharField(max_length=50)
     password = models.CharField(max_length=200)
     name = models.CharField(max_length=50)
-    birth_date = models.DateTimeField()
+    birth_date = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)
     email = models.CharField(max_length=50, unique=True)
     zipcode = models.CharField(max_length=20, null=True)
