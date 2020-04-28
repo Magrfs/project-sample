@@ -5,5 +5,4 @@ from .models import Branch
 
 
 class StoreView(View):
-    get(self, request):
-        pass
+    pass

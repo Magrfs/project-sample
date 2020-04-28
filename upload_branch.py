@@ -8,71 +8,71 @@ django.setup()
 from branch.models import *
 
 Region(
-    code='A00',
+    code='A',
     name='서울특별시'
 ).save()
 Region(
-    code='B00',
+    code='B',
     name='경기도'
 ).save()
 Region(
-    code='C00',
+    code='C',
     name='인천광역시'
 ).save()
 Region(
-    code='D00',
+    code='D',
     name='대전광역시'
 ).save()
 Region(
-    code='E00',
+    code='E',
     name='충청남도'
 ).save()
 Region(
-    code='F00',
+    code='F',
     name='충청북도'
 ).save()
 Region(
-    code='G00',
+    code='G',
     name='부산광역시'
 ).save()
 Region(
-    code='H00',
+    code='H',
     name='대구광역시'
 ).save()
 Region(
-    code='I00',
+    code='I',
     name='울산광역시'
 ).save()
 Region(
-    code='J00',
+    code='J',
     name='경상남도'
 ).save()
 Region(
-    code='K00',
+    code='K',
     name='경상북도'
 ).save()
 Region(
-    code='L00',
+    code='L',
     name='광주광역시'
 ).save()
 Region(
-    code='M00',
+    code='M',
     name='전라남도'
 ).save()
 Region(
-    code='N00',
+    code='N',
     name='전라북도'
 ).save()
 Region(
-    code='O00',
+    code='O',
     name='강원도'
 ).save()
 Region(
-    code='P00',
+    code='P',
     name='제주도'
 ).save()
 Region(
-    code='Q00',
+    code='Q',
     name='세종'
 ).save()
 
@@ -634,7 +634,8 @@ branches = [{"registDate": "Mar 15, 2019 11:07:29 PM", "shopNo": 65, "shopSeq": 
             {"registDate": "Mar 15, 2019 11:07:29 PM", "shopNo": 52, "shopSeq": "2000067001",
              "address": "서울시 중구 남대문로81 롯데백화점 본점 2층", "brandCd": "001",
              "businessTime": "10:30~20:00 (월~목) \r\n10:30~20:30 (금~일/공휴일)", "cityCd": "A24",
-             "interior": "서울 중심부의 랜드마크 시설, 롯데백화점 본점. \r\n\r\n오랫동안 고객의 사랑을 받아온 이 백화점 2층에 새로운 스타일리시한 카페가 탄생했다. \r\n\r\n \r\n\r\n라이트그레이와 화이트, 두 컬러의 경쾌한 베이스컬러를 지닌 이 매장은 \r\n\r\n지하1층의 플로어에 위치한 Paul Bassett과는 다른 분위기를 연출한다. \r\n\r\n기하학적으로 구성된 기둥의 모던한 패턴이 \r\n\r\n주변의 근대적인 분위기와 조화롭게 섞여 플로어 전체를 보다 매력적으로 돋보이게 한다. \r\n\r\n통로에 배치된 카운터에는 바리스타들이 커피를 내리고 있다. \r\n\r\n똑 똑 떨어지는 커피 내리는 소리와 향에 이끌려 매장으로 들어오면, 기둥의 클래식한 디자인에 둘러 쌓여 개정적이면서 경쾌한 플로어 안에서도 차분함을 느끼게 한다. \r\n\r\n \r\n\r\n뻥 뚫린 공간을 매개로 느끼는 공간의 북적거림에 마음도 들뜨고, \r\n\r\n커피 맛에 빠져드는 순간에는 \r\n\r\n언제나 찾아오는 하루를 보다 더 풍요롭게 해줄 것이다. ",
+             "interior": '''서울 중심부의 랜드마크 시설, 롯데백화점 본점. \r\n\r\n오랫동안 고객의 사랑을 받아온 이 백화점 2층에 새로운 스타일리시한 카페가 탄생했다. \r\n\r\n \r\n\r\n라이트그레이와 화이트, 두 컬러의 경쾌한 베이스컬러를 지닌 이 매장은 \r\n\r\n지하1층의 플로어에 위치한 Paul Bassett과는 다른 분위기를 연출한다. \r\n\r\n기하학적으로 구성된 기둥의 모던한 패턴이 \r\n\r\n주변의 근대적인 분위기와 조화롭게 섞여 플로어 전체를 보다 매력적으로 돋보이게 한다.
+              \r\n\r\n통로에 배치된 카운터에는 바리스타들이 커피를 내리고 있다. \r\n\r\n똑 똑 떨어지는 커피 내리는 소리와 향에 이끌려 매장으로 들어오면, 기둥의 클래식한 디자인에 둘러 쌓여 개정적이면서 경쾌한 플로어 안에서도 차분함을 느끼게 한다. \r\n\r\n \r\n\r\n뻥 뚫린 공간을 매개로 느끼는 공간의 북적거림에 마음도 들뜨고, \r\n\r\n커피 맛에 빠져드는 순간에는 \r\n\r\n언제나 찾아오는 하루를 보다 더 풍요롭게 해줄 것이다. ''',
              "locLati": "37.56456", "locLongi": "126.9816", "storCd": "2000067", "shopName": "롯데 본점 2호점",
              "tel": "02-779-7225", "isNewYn": "N", "serviceCd": "02,10,07,03", "areaCd": "A00", "distance": "0",
              "rownum": 0, "pos_end": 0, "pos_sta": 0, "pageSize": 20, "page": 1},
@@ -1221,7 +1222,7 @@ branches = [{"registDate": "Mar 15, 2019 11:07:29 PM", "shopNo": 65, "shopSeq": 
 
 for area in areas:
     print(area[0]['areaCd'])
-    region = Region.objects.get(code=area[0]['areaCd'])
+    region = Region.objects.get(code=area[0]['areaCd'][:1])
     for data in area:
         Area(
             region=region,
@@ -1231,7 +1232,7 @@ for area in areas:
 
 for branch in branches:
     b = Branch.objects.create(
-        region=Region.objects.get(code=branch['areaCd']),
+        region=Region.objects.get(code=branch['areaCd'][:1]),
         area=Area.objects.get(code=branch['cityCd']),
         shop_name=branch['shopName'],
         tel=branch['tel'],
