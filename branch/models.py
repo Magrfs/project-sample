@@ -26,11 +26,11 @@ class Branch(models.Model):
     address = models.CharField(max_length=100)
     shop_number = models.IntegerField()
     business_time = models.CharField(max_length=50)
-    interior = models.CharField(max_length=400)
+    interior = models.CharField(max_length=400, null=True)
     latitude = models.DecimalField(max_digits=7, decimal_places=5)
     longitude = models.DecimalField(max_digits=7, decimal_places=4)
     regist_date = models.DateTimeField(auto_now_add=True)
-    notice = models.CharField(max_length=200)
+    notice = models.CharField(max_length=200, null=True)
 
     class Meta:
         db_table = 'branches'
