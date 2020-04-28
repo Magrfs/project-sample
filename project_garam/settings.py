@@ -27,9 +27,9 @@ SECRET_KEY = my_settings.SECRET['secret']
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    # '*',
-    # '10.58.4.56',
-    # '10.58.4.56:8000'
+    '*',
+    '10.58.6.197',
+    '10.58.6.197:8000'
 ]
 
 
