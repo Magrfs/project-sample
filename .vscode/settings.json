@@ -1,3 +1,6 @@
 {
-    "python.pythonPath": "/Users/magrfs/miniconda3/envs/project_1st/bin/python"
+    "python.pythonPath": "/Users/magrfs/miniconda3/envs/project_1st/bin/python",
+    "python.formatting.provider": "black",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }
