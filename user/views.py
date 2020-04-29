@@ -8,7 +8,7 @@ from django.http import HttpResponse, JsonResponse
 from django.db import IntegrityError
 
 from .models import User
-
+from project_garam.settings import SECRET_KEY, ALGORITHM
 
 class UserCheckView(View):
     def post(self, request):
@@ -26,13 +26,13 @@ class UserCheckView(View):
 
 class UserView(View):
     VALIDATION_RULES = {
-        'user_id': lambda user_id: False if User.objects.filter(user_id=user_id).exists() else True,
-        'password': lambda password: False if not re.match(r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@.#^* ?+=_~])[A-Za-z\d!@.#^* ?+=_~]{8,}$", password) else True,
-        'name': lambda name: False if name is None or len(name) == 0 else True,
-        'birth_date': lambda birth_date: False if not re.match(r"(\d{4})-(\d{2})-(\d{2})", birth_date) else True,
-        'phone': lambda phone: False if User.objects.filter(phone=phone).exists() else True,
-        'email': lambda email: False if not re.match(r"^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email) else True
-    }
+            'user_id' : lambda user_id : False if User.objects.filter(user_id=user_id).exists() else True,
+            'password' : lambda password : False if not re.match(r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@.#^* ?+=_~])[A-Za-z\d!@.#^* ?+=_~]{8,}$",password) else True,
+            'name' : lambda name : False if name is None or len(name) == 0 else True,
+            'birth_date' : lambda birth_date : False if not re.match(r"(\d{4})-(\d{2})-(\d{2})", birth_date) else True,
+            'phone' : lambda phone : False if User.objects.filter(phone=phone).exists() else True,
+            'email' : lambda email : False if not re.match(r"^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email) else True
+        }
 
     def post(self, request):
         try:
@@ -60,5 +60,22 @@ class UserView(View):
 
         except IntegrityError:
             return JsonResponse({"message": "DUPLICATED_KEYS"}, status=400)
+        except KeyError:
+            return JsonResponse({"message": "INVALID_KEYS"}, status=400)
+
+class SignInView(View):
+    def post(self, request):
+        data = json.loads(request.body)
+        print(data)
+        try:
+            if User.objects.filter(user_id = data['user_id']).exists():
+                user = User.objects.get(user_id = data['user_id'])
+
+                if bcrypt.checkpw(data['password'].encode('utf-8'), user.password.encode('utf-8')):
+                    token = jwt.encode({'id': user.id}, SECRET_KEY, ALGORITHM).decode('utf-8')
+                    return JsonResponse({"token": token}, status=200)
+                return JsonResponse({"message": "INVALID_PASSWORD"},status=400)
+            return JsonResponse({"message": "INVALID_ID"}, status=400)
+
         except KeyError:
             return JsonResponse({"message": "INVALID_KEYS"}, status=400)
