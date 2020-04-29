@@ -66,49 +66,16 @@ class UserView(View):
 class SignInView(View):
     def post(self, request):
         data = json.loads(request.body)
+        print(data)
         try:
             if User.objects.filter(user_id = data['user_id']).exists():
                 user = User.objects.get(user_id = data['user_id'])
 
                 if bcrypt.checkpw(data['password'].encode('utf-8'), user.password.encode('utf-8')):
                     token = jwt.encode({'id': user.id}, SECRET_KEY, ALGORITHM).decode('utf-8')
-                    return JsonResponse({"token:": token}, status=200)
-                return HttpResponse(status=401)
-            return HttpResponse(status=401)
+                    return JsonResponse({"token": token}, status=200)
+                return JsonResponse({"message": "INVALID_PASSWORD"},status=400)
+            return JsonResponse({"message": "INVALID_ID"}, status=400)
 
         except KeyError:
             return JsonResponse({"message": "INVALID_KEYS"}, status=400)
-
-# class UserChangeView(View):
-#     @login_decorator
-#     def post(self, request):
-#         data = json.loads(request.body)
-#         try:
-#             if len(data.keys()) == 2:
-#                 if User.objects.filter(user_id=data['user_id']).exists():
-#                     user = User.objects.get(user_id = data['user_id'])
-
-#                     if bcrypt.checkpw(data['password'].encode('utf-8'), user.password.encode('utf-8')):
-#                         return HttpResponse(status=200)
-#                     return JsonResponse({"message": "INVALID_PASSWORD"}, status=400)
-
-#             if not re.match(r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@.#^* ?+=_~])[A-Za-z\d!@.#^* ?+=_~]{8,}$", data['password']):
-#                 return JsonResponse({"message": "INVALID_PASSWORD"}, status=400)
-#             hashed_password = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt())
-
-#             if User.objects.filter(phone=data['phone']).exists():
-#                 return JsonResponse({"message": "DUPLICATE_PHONE_NUMBER"}, status=409)
-
-#             if data['email'] is None or len(data['email']) == 0 or not re.match(r'^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', data['email']):
-#                 return JsonResponse({"message": "INPUT_MAIL_ADDRESS"}, status=400)
-
-#             User.objects.update(
-#                 password = hashed_password.decode('utf-8'),
-#                 phone = data['phone'],
-#                 email = data['email'],
-#                 address = data.get('address', None),
-#                 )
-#             return HttpResponse(status=200)
-
-#         except KeyError:
-#             JsonResponse({"message": "INVALID_KEYS"}, status=400)
