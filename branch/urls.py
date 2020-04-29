@@ -1,7 +1,6 @@
 from django.urls import path
-from user.views import UserView
+from .views import AreaView
 
 urlpatterns = [
-    path('', UserView.as_view()),
-    # path('', StoreView.as_view()),
+    path('/<str:target_code>', AreaView.as_view()),
 ]
